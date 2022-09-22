@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
-    private Transform m_target;
+    [Header("Attributes")]
     public float Range = 15f;
-
-    public Transform TowerModel;
-
     public float RotationSpeed = 10f;
+    public float FireRate = 1f;
+    public float FireCountdown = 0f;
+
+    [Header("UnitySetup")]
+    public Transform m_target;
+    public Transform TowerModel;
+    public GameObject PREFAB_BULLET;
+    public Transform FireLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +35,20 @@ public class BaseUnit : MonoBehaviour
         Vector3 rotation = Quaternion.Lerp(TowerModel.rotation, lookRotation, RotationSpeed * Time.deltaTime).eulerAngles;
         TowerModel.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
+        if(FireCountdown <= 0f)
+        {
+            ShootTarget();
+            FireCountdown = 1f / FireRate;
+        }
+        FireCountdown -= Time.deltaTime;
+
+    }
+
+    private void ShootTarget()
+    {
+        var b = Instantiate(PREFAB_BULLET, FireLocation.position, Quaternion.identity);
+        if(b != null)
+        b.GetComponent<Bullet>().SetTarget(m_target);
     }
 
     private void UpdateTarget()
