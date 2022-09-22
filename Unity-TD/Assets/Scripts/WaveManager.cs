@@ -8,7 +8,7 @@ public class WaveManager : MonoBehaviour
 
     public float TimeBetweenWaves = 5f;
 
-    private float Countdown = 2f;
+    private float Countdown = 5f;
 
     public int WaveIndex = 0;
 
@@ -44,9 +44,9 @@ public class WaveManager : MonoBehaviour
 
         WaveIndex += 1;
 
-        int numOfEnemies = WaveIndex * WaveIndex + 1;
+        int numOfEnemies = WaveIndex;
 
-        for(int i = 0; i < numOfEnemies; i++)
+        for(int i = 0; i < numOfEnemies-1; i++)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(.5f);
