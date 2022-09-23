@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 10
-  RotationSpeed: 5
+  RotationSpeed: 15
   FireRate: 1
   FireCountdown: 0
   m_target: {fileID: 0}

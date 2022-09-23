@@ -17,22 +17,25 @@ public class BuildManager : MonoBehaviour
 
         _instance = this;
 
-        LoadPrefabTowers();
+       
 
     }
 
-    private void LoadPrefabTowers()
+
+
+    public GameObject SelectedShopItem;
+
+    public GameObject GetBuilding()
     {
-        PREFAB_Tower0 = Resources.Load<GameObject>("Towers/Tower0");
+        if(SelectedShopItem != null)
+        {
+            GameObject buildingResult = SelectedShopItem;
+            SelectedShopItem = null;
+            return buildingResult;
+        }
+        return null;
     }
-
-    private GameObject PREFAB_Tower0;
-
-
-    public GameObject GetTowerPrefab()
-    {
-        return PREFAB_Tower0;
-    }
+    
 
     // Start is called before the first frame update
     void Start()
