@@ -54,6 +54,7 @@ public class Bullet : MonoBehaviour
         var vfx = Instantiate(PREFAB_IMPACTEFFECT, lastPostion, this.transform.rotation);
         Destroy(vfx, 2f);
 
+        Destroy(target.gameObject);
 
         Destroy(this.gameObject);
     }
